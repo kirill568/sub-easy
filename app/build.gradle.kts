@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.example.subeasy"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.subeasy"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -82,4 +82,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
