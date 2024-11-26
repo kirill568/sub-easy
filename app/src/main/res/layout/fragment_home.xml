@@ -6,11 +6,42 @@
     android:background="@color/main_color"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
+
+    <!-- Greeting -->
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            android:src="@drawable/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/red_rose_regular"
+            android:gravity="center"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            tools:text="Hello Kirill" />
+
+    </LinearLayout>
+
+    <!-- Empty subscription -->
     <LinearLayout
         android:id="@+id/emptyStateLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:visibility="gone"
         android:gravity="center">
         <TextView
             android:id="@+id/baks"
@@ -37,6 +68,102 @@
             android:text="@string/empty_subscriptions"/>
     </LinearLayout>
 
+    <!-- Subscriptions exist -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- Total amount card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
+            android:background="@drawable/shape_card"
+            android:layout_marginVertical="24dp"
+            android:paddingVertical="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/red_rose_bold"
+                android:textSize="32sp"
+                android:textColor="@color/text_color"
+                android:text="$"/>
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                tools:text="269.96"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/red_rose_bold"
+                android:textSize="32sp"
+                android:textColor="@color/text_color"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="@string/amount_spent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/red_rose_regular"
+                android:textSize="14sp"
+                android:textColor="@color/text_second_color"/>
+        </LinearLayout>
+
+        <!-- Upcoming Payments -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:text="@string/upcoming_payments"
+                android:fontFamily="@font/red_rose_bold"
+                android:textSize="16sp"
+                android:textColor="@color/text_color" />
+
+            <!-- List of upcoming payments -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcomingPayments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <!-- My subscriptions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:text="@string/my_subscriptions"
+                android:fontFamily="@font/red_rose_bold"
+                android:textSize="16sp"
+                android:textColor="@color/text_color" />
+
+            <!-- List of my subscriptions -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mySubscriptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
