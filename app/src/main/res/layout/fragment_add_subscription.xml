@@ -49,6 +49,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="16dp"
             android:autofillHints=""
+            android:inputType="date"
             android:clickable="false"
             android:focusable="false"
             android:hint="@string/started_on"
@@ -61,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:entries="@array/subscription_cycle"
-            android:hint="Cycle"
             android:style="@style/editTextStyle" />
 
         <!-- remind select -->
@@ -71,7 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:entries="@array/subscription_cycle"
-            android:hint="Cycle"
             android:style="@style/editTextStyle" />
 
         <!-- cost input -->
