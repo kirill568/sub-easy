@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- subscription icon -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/subscriptionIcon"
+            style="@style/subscriptionIcon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView" />
+
+        <!-- subscription name -->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/red_rose_bold"
+            android:textColor="@color/text_color"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Netflix" />
+
+        <!-- startedOn input -->
+        <!-- TODO: create DatePicker -->
+        <EditText
+            android:id="@+id/startedOn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints=""
+            android:clickable="false"
+            android:focusable="false"
+            android:hint="@string/started_on"
+            android:style="@style/editTextStyle" />
+
+        <!-- cycle select -->
+        <!-- TODO: use spinner_item.xml -->
+        <Spinner
+            android:id="@+id/cycle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:entries="@array/subscription_cycle"
+            android:hint="Cycle"
+            android:style="@style/editTextStyle" />
+
+        <!-- remind select -->
+        <!-- TODO: use spinner_item.xml -->
+        <Spinner
+            android:id="@+id/remind"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:entries="@array/subscription_cycle"
+            android:hint="Cycle"
+            android:style="@style/editTextStyle" />
+
+        <!-- cost input -->
+        <!-- TODO: add formatting -->
+        <EditText
+            android:id="@+id/cost"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:autofillHints=""
+            android:hint="@string/cost"
+            android:inputType="numberDecimal"
+            android:style="@style/editTextStyle" />
+
+        <!-- note input -->
+        <!-- TODO: add auto scrolling -->
+        <!-- TODO: add button for using micro -->
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:autofillHints=""
+            android:gravity="start"
+            android:hint="@string/note"
+            android:inputType="textMultiLine"
+            android:paddingVertical="4dp"
+            android:scrollbars="vertical"
+            android:style="@style/editTextStyle" />
+    </LinearLayout>
+
+    <!-- add subscription button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_subscription_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:fontFamily="@font/red_rose_bold"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="@string/add_subscription"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        app:backgroundTint="@color/variant_color"
+        app:cornerRadius="12dp"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

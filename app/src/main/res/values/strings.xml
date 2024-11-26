@@ -12,4 +12,22 @@
     <string name="my_subscriptions">My subscriptions</string>
     <string name="all_subscriptions">All subscriptions</string>
     <string name="custom_subscription">Custom subscription</string>
+    <string name="search">Search</string>
+    <string name="started_on">Started on</string>
+    <string name="cost">Cost</string>
+    <string name="note">Note</string>
+    <string name="add_subscription">Add Subscription</string>
+
+    <string-array name="subscription_cycle">
+        <item>Select cycle</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
+    <string-array name="subscription_remind">
+        <item>Never</item>
+        <item>One day</item>
+        <item>One week</item>
+        <item>One month</item>
+    </string-array>
 </resources>
