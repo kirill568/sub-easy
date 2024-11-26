@@ -136,8 +136,7 @@
                 android:id="@+id/upcomingPayments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone" />
+                android:orientation="horizontal" />
         </LinearLayout>
 
 
@@ -161,8 +160,7 @@
                 android:id="@+id/mySubscriptions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone" />
+                android:orientation="vertical" />
         </LinearLayout>
     </LinearLayout>
 

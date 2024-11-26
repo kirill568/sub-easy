@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/all_subscriptions"
+        android:fontFamily="@font/red_rose_bold"
+        android:textSize="24sp"
+        android:textColor="@color/text_color" />
+
+    <!-- Search input -->
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Search"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_input"
+        android:textColor="@color/text_placeholder_color"
+        android:textColorHint="@color/text_placeholder_color"
+        android:textSize="14sp"
+        android:fontFamily="@font/red_rose_regular"
+        android:paddingHorizontal="16dp"
+        android:inputType="text"
+        android:drawableEnd="@drawable/ic_magnifier"
+        android:drawablePadding="8dp"/>
+
+    <!-- Create custom subscription -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_subscription"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/red_rose_regular"
+            android:text="@string/custom_subscription"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- All subscription -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allSubscriptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+</LinearLayout>

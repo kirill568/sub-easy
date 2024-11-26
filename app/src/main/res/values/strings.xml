@@ -10,4 +10,6 @@
     <string name="amount_spent">Amount Spent this month</string>
     <string name="upcoming_payments">Upcoming Payments</string>
     <string name="my_subscriptions">My subscriptions</string>
+    <string name="all_subscriptions">All subscriptions</string>
+    <string name="custom_subscription">Custom subscription</string>
 </resources>

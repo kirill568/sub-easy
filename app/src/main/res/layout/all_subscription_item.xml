@@ -7,7 +7,6 @@
     android:layout_height="76dp"
     android:padding="16dp"
     android:background="@drawable/shape_subscription">
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         style="@style/subscriptionIcon"
@@ -23,50 +22,30 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginStart="12dp"
         android:fontFamily="@font/red_rose_bold"
         android:textColor="@color/text_color"
         android:textSize="16sp"
-        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Netflix" />
 
-    <TextView
-        android:id="@+id/cost"
-        android:layout_width="wrap_content"
-        android:layout_height="20sp"
-        android:layout_weight="1"
-        android:fontFamily="@font/red_rose_bold"
-        android:gravity="end"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="$8.44" />
-
-    <TextView
-        android:id="@+id/due"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_gravity="start"
-        android:fontFamily="@font/red_rose_regular"
-        android:textColor="@color/text_second_color"
-        android:textSize="14sp"
-        android:layout_marginStart="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-        tools:text="Due in 6 days" />
-
-    <TextView
-        android:id="@+id/period"
-        android:layout_width="wrap_content"
-        android:layout_height="20sp"
-        android:layout_weight="1"
-        android:fontFamily="@font/red_rose_regular"
-        android:gravity="end"
-        android:textColor="@color/text_second_color"
-        android:textSize="14sp"
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:backgroundTint="@color/on_primary_color"
+        app:icon="@drawable/ic_add"
+        app:iconSize="14dp"
+        app:iconGravity="textStart"
+        android:padding="0dp"
+        app:iconPadding="0dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:shapeAppearanceOverlay="@style/circleButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="/Month" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
