@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:style="@style/labelStyle"
-            tools:text="@string/started_on" />
+            android:text="@string/started_on" />
 
         <!-- startedOn input -->
         <!-- TODO: create DatePicker -->
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:style="@style/labelStyle"
-            tools:text="@string/cycle"/>
+            android:text="@string/cycle"/>
 
         <!-- cycle select -->
         <!-- TODO: use spinner_item.xml -->
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:style="@style/labelStyle"
-            tools:text="@string/remind_me"/>
+            android:text="@string/remind_me"/>
 
         <!-- remind select -->
         <!-- TODO: use spinner_item.xml -->
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:style="@style/labelStyle"
-            tools:text="@string/cost"/>
+            android:text="@string/cost"/>
 
         <!-- cost input -->
         <!-- TODO: add formatting -->
@@ -142,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:style="@style/labelStyle"
-            tools:text="@string/note"/>
+            android:text="@string/note"/>
 
         <!-- note input -->
         <!-- TODO: add auto scrolling -->

@@ -8,12 +8,6 @@ import androidx.room.ForeignKey
     tableName = "subscription",
     foreignKeys = [
         ForeignKey(
-            entity = User::class,
-            parentColumns = ["id"],
-            childColumns = ["userId"],
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
             entity = Service::class,
             parentColumns = ["id"],
             childColumns = ["serviceId"],
@@ -23,7 +17,6 @@ import androidx.room.ForeignKey
 )
 data class Subscription(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val userId: Int,
     val serviceId: Int,
     val startedOn: Long, // Timestamp
     val cycle: String,  // monthly, yearly

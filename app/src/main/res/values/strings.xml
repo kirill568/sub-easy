@@ -29,6 +29,10 @@
     <string name="update">Update</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
+    <string name="manage_your">Manage your</string>
+    <string name="subscriptions">Subscriptions</string>
+    <string name="app_description">Seamless subscription management, simplified for your convenience</string>
+    <string name="get_started">Get stared</string>
 
     <string-array name="subscription_cycle">
         <item>Choose</item>

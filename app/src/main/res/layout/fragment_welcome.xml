@@ -6,26 +6,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/avatar"
-        style="@style/subscriptionIcon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:cornerSize="50%"
-        android:src="@drawable/ic_launcher"
-        app:shapeAppearanceOverlay="@style/circleImageView"
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/red_rose_regular"
+        android:gravity="center"
+        android:text="$"
+        android:textColor="@color/text_color"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/red_rose_bold"
+        android:gravity="center"
+        android:text="@string/manage_your"
+        android:textColor="@color/text_color"
+        android:textSize="40sp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/red_rose_bold"
+        android:gravity="center"
+        android:text="@string/subscriptions"
+        android:textColor="@color/purple_200"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/red_rose_regular"
+        android:gravity="center"
+        android:text="@string/app_description"
+        android:textColor="@color/text_second_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar">
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,11 +106,9 @@
             android:style="@style/editTextStyle" />
     </LinearLayout>
 
-    <!-- update info button -->
-    <!-- TODO: show this button if something was changed -->
+    <!-- add subscription button -->
     <com.google.android.material.button.MaterialButton
-        android:visibility="gone"
-        android:id="@+id/update_button"
+        android:id="@+id/get_started_button"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="bottom"
@@ -73,15 +118,16 @@
         android:insetRight="0dp"
         android:insetBottom="0dp"
         android:padding="0dp"
-        android:text="@string/update"
+        android:text="@string/get_started"
         android:textAllCaps="false"
         android:textColor="@color/text_color"
         android:textSize="16sp"
+        android:enabled="true"
+        android:alpha="0.5"
         app:backgroundTint="@color/variant_color"
         app:cornerRadius="12dp"
         app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
