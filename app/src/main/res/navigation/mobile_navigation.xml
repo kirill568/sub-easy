@@ -9,17 +9,46 @@
         android:id="@+id/navigation_home"
         android:name="com.example.subeasy.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_subscriptionDetail"
+            app:destination="@id/subscriptionDetail" />
+        <action
+            android:id="@+id/action_navigation_home_to_allSubscriptions"
+            app:destination="@id/allSubscriptions" />
+    </fragment>
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.subeasy.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/addSubscription"
+        android:name="com.example.subeasy.ui.addSubscription.AddSubscription"
+        android:label="AddSubscription" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.subeasy.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/settingsFragment"
+        android:name="com.example.subeasy.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/subscriptionDetail"
+        android:name="com.example.subeasy.ui.subscriptionDetail.SubscriptionDetail"
+        android:label="subscriptionDetail" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.subeasy.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/allSubscriptions"
+        android:name="com.example.subeasy.ui.allSubscriptions.AllSubscriptions"
+        android:label="AllSubscriptions" >
+        <action
+            android:id="@+id/action_allSubscriptions_to_addSubscription"
+            app:destination="@id/addSubscription" />
+    </fragment>
+
 </navigation>
