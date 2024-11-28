@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -15,53 +14,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- If is custom subscription -->
-        <LinearLayout
+        <!-- If is not custom subscription -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/red_rose_bold"
-                android:textColor="@color/text_color"
-                android:textSize="24sp"
-                tools:text="@string/custom_subscription" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:style="@style/labelStyle"
-                tools:text="@string/name" />
-
-            <!-- custom subscription name input -->
-            <EditText
-                android:id="@+id/custom_subscription_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="16dp"
-                android:autofillHints=""
-                android:inputType="date"
-                android:clickable="false"
-                android:focusable="false"
-                android:hint="@string/enter_name"
-                android:style="@style/editTextStyle" />
-        </LinearLayout>
-
-        <!-- If is not custom subscription -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
             <!-- subscription icon -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/subscriptionIcon"
                 style="@style/subscriptionIcon"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <!-- subscription name -->
@@ -72,8 +38,33 @@
                 android:fontFamily="@font/red_rose_bold"
                 android:textColor="@color/text_color"
                 android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subscriptionIcon"
                 tools:text="Netflix" />
-        </LinearLayout>
+
+            <!-- Total amount for subscription -->
+            <TextView
+                android:id="@+id/total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/red_rose_bold"
+                android:textColor="@color/text_color"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="346.25$" />
+
+            <TextView
+                android:id="@+id/due"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/red_rose_regular"
+                android:textColor="@color/text_second_color"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total_amount"
+                tools:text="Payment due in 4 days" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView
@@ -159,7 +150,7 @@
         <EditText
             android:id="@+id/note"
             android:layout_width="match_parent"
-            android:layout_height="144dp"
+            android:layout_height="100dp"
             android:autofillHints=""
             android:gravity="start"
             android:inputType="textMultiLine"
@@ -167,6 +158,32 @@
             android:scrollbars="vertical"
             android:style="@style/editTextStyle" />
     </LinearLayout>
+
+    <!-- update subscription button -->
+    <!-- TODO: show this button if something was changed -->
+    <com.google.android.material.button.MaterialButton
+        android:visibility="gone"
+        android:id="@+id/update_subscription_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:fontFamily="@font/red_rose_bold"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="@string/update_subscription"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/variant_color"
+        app:cornerRadius="12dp"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_subscription_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- add subscription button -->
     <com.google.android.material.button.MaterialButton
@@ -180,11 +197,11 @@
         android:insetRight="0dp"
         android:insetBottom="0dp"
         android:padding="0dp"
-        android:text="@string/add_subscription"
+        android:text="@string/cancel_subscription"
         android:textAllCaps="false"
         android:textColor="@color/text_color"
         android:textSize="16sp"
-        app:backgroundTint="@color/variant_color"
+        app:backgroundTint="@color/red"
         app:cornerRadius="12dp"
         app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"

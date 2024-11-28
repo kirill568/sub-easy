@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="circleImageView" parent="">
+    <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="subscriptionIcon" parent="">
@@ -29,5 +34,11 @@
         <item name="android:paddingEnd">16dp</item>
 
         <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="labelStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_second_color</item>
+        <item name="android:fontFamily">@font/red_rose_regular</item>
     </style>
 </resources>

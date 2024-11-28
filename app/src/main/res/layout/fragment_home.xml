@@ -17,7 +17,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
             android:src="@drawable/ic_launcher"/>
 
         <TextView

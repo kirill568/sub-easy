@@ -14,4 +14,5 @@
     <color name="text_placeholder_color">#5B5B6F</color>
     <color name="on_primary_color">#101019</color>
     <color name="variant_color">#4649E5</color>
+    <color name="red">#FD3464</color>
 </resources>

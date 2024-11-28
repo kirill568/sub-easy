@@ -17,9 +17,21 @@
     <string name="cost">Cost</string>
     <string name="note">Note</string>
     <string name="add_subscription">Add Subscription</string>
+    <string name="choose">Choose</string>
+    <string name="cycle">Cycle</string>
+    <string name="remind_me">Remind me</string>
+    <string name="name">Name</string>
+    <string name="enter_name">Enter name</string>
+    <string name="cancel_subscription">Cancel subscription</string>
+    <string name="update_subscription">Update subscription</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="update">Update</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
 
     <string-array name="subscription_cycle">
-        <item>Select cycle</item>
+        <item>Choose</item>
         <item>Monthly</item>
         <item>Yearly</item>
     </string-array>
