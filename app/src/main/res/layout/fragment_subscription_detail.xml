@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/started_on" />
 
         <!-- startedOn input -->
@@ -85,13 +85,13 @@
             android:clickable="false"
             android:focusable="false"
             android:hint="@string/choose"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/cycle"/>
 
         <!-- cycle select -->
@@ -101,13 +101,13 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:entries="@array/subscription_cycle"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/remind_me"/>
 
         <!-- remind select -->
@@ -117,13 +117,13 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:entries="@array/subscription_cycle"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/cost"/>
 
         <!-- cost input -->
@@ -135,13 +135,13 @@
             android:autofillHints=""
             android:hint="10$"
             android:inputType="numberDecimal"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/note"/>
 
         <!-- note input -->
@@ -156,7 +156,7 @@
             android:inputType="textMultiLine"
             android:paddingVertical="4dp"
             android:scrollbars="vertical"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
     </LinearLayout>
 
     <!-- update subscription button -->

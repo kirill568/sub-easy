@@ -11,9 +11,6 @@ interface SubscriptionDao {
     @Insert
     suspend fun insert(subscription: Subscription)
 
-    @Query("SELECT * FROM subscription WHERE userId = :userId")
-    suspend fun getSubscriptionsByUser(userId: Int): List<Subscription>
-
     @Query("SELECT * FROM subscription WHERE serviceId = :serviceId")
     suspend fun getSubscriptionsByService(serviceId: Int): List<Subscription>
 

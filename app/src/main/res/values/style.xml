@@ -20,7 +20,7 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="editTextStyle">
+    <style name="editTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text_placeholder_color</item>
         <item name="android:textColorHint">@color/text_placeholder_color</item>

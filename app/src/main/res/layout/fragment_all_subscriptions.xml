@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:autofillHints=""
-        android:style="@style/editTextStyle"
+        style="@style/editTextStyle"
         android:hint="@string/search"
         android:layout_marginBottom="16dp"
         android:inputType="text"
@@ -57,7 +57,7 @@
 
     <!-- All subscription -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allSubscriptions"
+        android:id="@+id/navigation_all_subscriptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"/>

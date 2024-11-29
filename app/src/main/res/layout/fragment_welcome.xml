@@ -77,7 +77,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/first_name" />
 
         <!-- firstName input -->
@@ -87,13 +87,13 @@
             android:layout_height="48dp"
             android:autofillHints=""
             android:inputType="text"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:style="@style/labelStyle"
+            style="@style/labelStyle"
             android:text="@string/last_name" />
 
         <!-- lastName input -->
@@ -103,7 +103,7 @@
             android:layout_height="48dp"
             android:autofillHints=""
             android:inputType="text"
-            android:style="@style/editTextStyle" />
+            style="@style/editTextStyle" />
     </LinearLayout>
 
     <!-- add subscription button -->
