@@ -11,7 +11,7 @@ import com.example.subeasy.data.local.entities.Service
 import com.example.subeasy.data.local.entities.Subscription
 import com.example.subeasy.data.local.entities.User
 
-@Database(entities = [User::class, Service::class, Subscription::class], version = 1)
+@Database(entities = [User::class, Service::class, Subscription::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

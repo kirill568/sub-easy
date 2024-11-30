@@ -21,6 +21,11 @@
             app:destination="@id/navigation_all_subscriptions"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_welcome2"
+            app:destination="@id/navigation_welcome"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_add_subscription"
@@ -37,13 +42,7 @@
     <fragment
         android:id="@+id/navigation_welcome"
         android:name="com.example.subeasy.ui.welcome.WelcomeFragment"
-        android:label="WelcomeFragment" >
-        <action
-            android:id="@+id/action_welcomeFragment_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:popUpTo="@+id/mobile_navigation"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        android:label="" />
     <fragment
         android:id="@+id/navigation_all_subscriptions"
         android:name="com.example.subeasy.ui.allSubscriptions.AllSubscriptions"

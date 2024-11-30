@@ -5,13 +5,18 @@ import android.util.Log
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.subeasy.R
+import com.example.subeasy.data.local.AppDatabase
 import com.example.subeasy.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
+
+        checkActiveUser()
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -40,10 +48,12 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            val supportActionBar = (this as? AppCompatActivity)?.supportActionBar
             when (destination.id) {
                 R.id.navigation_home -> showBottomAppBar()
                 R.id.navigation_settings -> showBottomAppBar()
-                else -> hideBottomAppBar()
+                R.id.navigation_welcome -> {supportActionBar?.hide(); hideBottomAppBar()}
+                else -> {supportActionBar?.show(); hideBottomAppBar()}
             }
         }
 
@@ -66,4 +76,21 @@ class MainActivity : AppCompatActivity() {
         binding.bottomAppBar.visibility = View.VISIBLE
         binding.addSubscriptionButton.visibility = View.VISIBLE
     }
+
+    private fun checkActiveUser() {
+        lifecycleScope.launch {
+            val userDao = AppDatabase.getInstance(this@MainActivity).userDao()
+
+            // Переключаемся на IO-поток для работы с базой данных
+            val activeUser = withContext(Dispatchers.IO) {
+                userDao.getActiveUser()
+            }
+
+            val navController = findNavController(R.id.nav_host_fragment_activity_main)
+            if (activeUser == null) {
+                navController.navigate(R.id.action_navigation_home_to_navigation_welcome2)
+            }
+        }
+    }
+
 }
