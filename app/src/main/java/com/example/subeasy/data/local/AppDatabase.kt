@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.subeasy.data.local.converter.CycleConverter
 import com.example.subeasy.data.local.dao.ServiceDao
 import com.example.subeasy.data.local.dao.SubscriptionDao
 import com.example.subeasy.data.local.dao.UserDao
@@ -11,7 +13,8 @@ import com.example.subeasy.data.local.entities.Service
 import com.example.subeasy.data.local.entities.Subscription
 import com.example.subeasy.data.local.entities.User
 
-@Database(entities = [User::class, Service::class, Subscription::class], version = 2)
+@Database(entities = [User::class, Service::class, Subscription::class], version = 5)
+@TypeConverters(CycleConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -32,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_database"
                 )
-                    .fallbackToDestructiveMigration() // Удалить данные при изменении схемы (можно заменить на миграции)
+                    .addMigrations(Migrations.MIGRATION_4_5)
                     .build()
                 INSTANCE = instance
                 instance

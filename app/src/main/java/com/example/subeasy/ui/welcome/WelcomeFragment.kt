@@ -32,7 +32,7 @@ class WelcomeFragment: Fragment(R.layout.fragment_welcome) {
 
         userViewModel.isUserCreated.observe(viewLifecycleOwner, Observer { isCreated ->
             if (isCreated) {
-                controller.navigate(R.id.navigation_home)
+                controller.navigate(R.id.action_navigation_welcome_to_navigation_home2)
             } else {
                 Toast.makeText(context, "Ошибка создания пользователя", Toast.LENGTH_SHORT).show()
             }
