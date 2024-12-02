@@ -15,7 +15,7 @@
 
     <!-- Search input -->
     <EditText
-        android:id="@+id/search"
+        android:id="@+id/searchInput"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:autofillHints=""
@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/shape_subscription"
+        android:layout_marginBottom="16dp"
         android:paddingHorizontal="16dp">
 
         <TextView
@@ -57,7 +58,7 @@
 
     <!-- All subscription -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/navigation_all_subscriptions"
+        android:id="@+id/allServices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"/>

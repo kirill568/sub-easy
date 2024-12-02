@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_all_subscriptions"
-        android:name="com.example.subeasy.ui.allSubscriptions.AllSubscriptions"
+        android:name="com.example.subeasy.ui.allServices.AllServices"
         android:label="" >
         <action
             android:id="@+id/action_allSubscriptions_to_addSubscription"
