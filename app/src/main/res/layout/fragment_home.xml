@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/main_color"
     android:orientation="vertical"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:layout_marginBottom="56dp">
 
     <LinearLayout
         android:id="@+id/progressBar"
@@ -134,27 +135,27 @@
         </LinearLayout>
 
         <!-- Upcoming Payments -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:text="@string/upcoming_payments"
-                android:fontFamily="@font/red_rose_bold"
-                android:textSize="16sp"
-                android:textColor="@color/text_color" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="18dp"-->
+<!--                android:text="@string/upcoming_payments"-->
+<!--                android:fontFamily="@font/red_rose_bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textColor="@color/text_color" />-->
 
-            <!-- List of upcoming payments -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/upcomingPayments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-        </LinearLayout>
+<!--            &lt;!&ndash; List of upcoming payments &ndash;&gt;-->
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/upcomingPayments"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal" />-->
+<!--        </LinearLayout>-->
 
 
         <!-- My subscriptions -->

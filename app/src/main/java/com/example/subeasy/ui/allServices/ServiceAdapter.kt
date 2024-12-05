@@ -13,7 +13,9 @@ import com.example.subeasy.R
 import com.example.subeasy.data.local.entities.Service
 import java.io.IOException
 
-class ServiceAdapter : ListAdapter<Service, ServiceAdapter.ServiceViewHolder>(DIFF_CALLBACK) {
+class ServiceAdapter(
+    private val itemClickListener: OnItemClickListener
+) : ListAdapter<Service, ServiceAdapter.ServiceViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Service>() {
@@ -32,20 +34,24 @@ class ServiceAdapter : ListAdapter<Service, ServiceAdapter.ServiceViewHolder>(DI
         holder.bind(service)
     }
 
-    class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.name)
         private val iconImageView: ImageView = itemView.findViewById(R.id.serviceIcon)
 
         fun bind(service: Service) {
             nameTextView.text = service.name
 
+            itemView.setOnClickListener {
+                itemClickListener.onItemClick(service)
+            }
+
             try {
                 val assetManager = itemView.context.assets
-                val inputStream = assetManager.open("serviceIcons/" + service.iconPath) // Путь к файлу в папке serviceIcons
+                val inputStream = assetManager.open("serviceIcons/" + service.iconPath)
                 val drawable = Drawable.createFromStream(inputStream, null)
                 iconImageView.setImageDrawable(drawable)
             } catch (e: IOException) {
-                e.printStackTrace() // Обработка ошибок
+                e.printStackTrace()
             }
         }
     }

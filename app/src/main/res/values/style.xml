@@ -22,7 +22,7 @@
 
     <style name="editTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_placeholder_color</item>
+        <item name="android:textColor">@color/text_second_color</item>
         <item name="android:textColorHint">@color/text_placeholder_color</item>
         <item name="android:fontFamily">@font/red_rose_regular</item>
 
@@ -38,7 +38,7 @@
 
     <style name="labelStyle">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/text_second_color</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:fontFamily">@font/red_rose_regular</item>
     </style>
 </resources>

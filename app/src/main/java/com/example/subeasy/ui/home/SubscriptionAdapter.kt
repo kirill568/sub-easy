@@ -1,14 +1,17 @@
 package com.example.subeasy.ui.home
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subeasy.R
 import com.example.subeasy.data.local.entities.SubscriptionWithService
+import java.io.IOException
 import java.util.Calendar
 
 class SubscriptionDiffCallback : DiffUtil.ItemCallback<SubscriptionWithService>() {
@@ -28,12 +31,22 @@ class SubscriptionAdapter : ListAdapter<SubscriptionWithService, SubscriptionAda
         private val costTextView: TextView = itemView.findViewById(R.id.cost)
         private val cycleTextView: TextView = itemView.findViewById(R.id.cycle)
         private val dueTextView: TextView = itemView.findViewById(R.id.due)
+        private val iconImageView: ImageView = itemView.findViewById(R.id.serviceIcon)
 
         fun bind(subscriptionWithService: SubscriptionWithService) {
             nameTextView.text = subscriptionWithService.service.name
             costTextView.text = "$" + subscriptionWithService.subscription.cost.toString()
-            cycleTextView.text = "/" + subscriptionWithService.subscription.cycle.name.replaceFirstChar { it.uppercase() }
+            cycleTextView.text = "/" + subscriptionWithService.subscription.cycle.toString()
             dueTextView.text = daysOrMonthsUntilNextPayment(subscriptionWithService.subscription.calculateNextPaymentDate())
+
+            try {
+                val assetManager = itemView.context.assets
+                val inputStream = assetManager.open("serviceIcons/" + subscriptionWithService.service.iconPath)
+                val drawable = Drawable.createFromStream(inputStream, null)
+                iconImageView.setImageDrawable(drawable)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
     }
 

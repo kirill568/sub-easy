@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:fillViewport="true">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <!-- If is custom subscription -->
         <LinearLayout
+            android:id="@+id/customSubscriptionBlock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -36,27 +34,26 @@
 
             <!-- custom subscription name input -->
             <EditText
-                android:id="@+id/custom_subscription_name"
+                android:id="@+id/custom_service_name"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"
                 android:autofillHints=""
-                android:inputType="date"
-                android:clickable="false"
-                android:focusable="false"
+                android:inputType="text"
                 android:hint="@string/enter_name"
                 style="@style/editTextStyle" />
         </LinearLayout>
 
         <!-- If is not custom subscription -->
         <LinearLayout
+            android:id="@+id/existSubscriptionBlock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone">
-            <!-- subscription icon -->
+            <!-- service icon -->
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/subscriptionIcon"
+                android:id="@+id/serviceIcon"
                 style="@style/subscriptionIcon"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
@@ -64,9 +61,9 @@
                 android:src="@drawable/ic_launcher"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
-            <!-- subscription name -->
+            <!-- service name -->
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/serviceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/red_rose_bold"
@@ -83,7 +80,6 @@
             android:text="@string/started_on" />
 
         <!-- startedOn input -->
-        <!-- TODO: create DatePicker -->
         <EditText
             android:id="@+id/startedOn"
             android:layout_width="match_parent"
@@ -104,7 +100,6 @@
             android:text="@string/cycle"/>
 
         <!-- cycle select -->
-        <!-- TODO: use spinner_item.xml -->
         <Spinner
             android:id="@+id/cycle"
             android:layout_width="match_parent"
@@ -120,7 +115,6 @@
             android:text="@string/remind_me"/>
 
         <!-- remind select -->
-        <!-- TODO: use spinner_item.xml -->
         <Spinner
             android:id="@+id/remind"
             android:layout_width="match_parent"
@@ -142,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:autofillHints=""
-            android:hint="10$"
+            android:hint="10"
             android:inputType="numberDecimal"
             style="@style/editTextStyle" />
 
@@ -167,28 +161,29 @@
             android:paddingVertical="4dp"
             android:scrollbars="vertical"
             style="@style/editTextStyle" />
-    </LinearLayout>
 
-    <!-- add subscription button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_subscription_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:fontFamily="@font/red_rose_bold"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="@string/add_subscription"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-        app:backgroundTint="@color/variant_color"
-        app:cornerRadius="12dp"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- add subscription button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_subscription_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:fontFamily="@font/red_rose_bold"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:text="@string/add_subscription"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:backgroundTint="@color/variant_color"
+            app:cornerRadius="12dp"
+            app:iconPadding="0dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

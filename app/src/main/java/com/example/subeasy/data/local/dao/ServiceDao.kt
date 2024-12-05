@@ -9,7 +9,7 @@ import com.example.subeasy.data.local.entities.Service
 @Dao
 interface ServiceDao {
     @Insert
-    suspend fun insert(service: Service)
+    suspend fun insert(service: Service): Long
 
     @Query("SELECT * FROM service WHERE id = :serviceId")
     suspend fun getServiceById(serviceId: Int): Service

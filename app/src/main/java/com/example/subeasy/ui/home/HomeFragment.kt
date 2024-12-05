@@ -59,7 +59,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         homeViewModel.emptyState.observe(viewLifecycleOwner) { isEmpty ->
-            binding.emptyStateLayout.visibility = if (isEmpty) View.VISIBLE else View.GONE
+            if (isEmpty) {
+                binding.emptyStateLayout.visibility = View.VISIBLE
+            } else {
+                binding.greeting.visibility = View.VISIBLE
+                binding.subscriptionsExist.visibility = View.VISIBLE
+            }
         }
 
         homeViewModel.totalCostForCurrentMonth.observe(viewLifecycleOwner) { totalCost ->
