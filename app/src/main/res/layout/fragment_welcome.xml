@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/red_rose_regular"
-        android:gravity="center"
-        android:text="$"
-        android:textColor="@color/text_color"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/red_rose_bold"
-        android:gravity="center"
-        android:text="@string/manage_your"
-        android:textColor="@color/text_color"
-        android:textSize="40sp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/red_rose_bold"
-        android:gravity="center"
-        android:text="@string/subscriptions"
-        android:textColor="@color/purple_200"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/red_rose_regular"
-        android:gravity="center"
-        android:text="@string/app_description"
-        android:textColor="@color/text_second_color"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
-
+    android:layout_height="match_parent"
+    android:fillViewport="true">
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/red_rose_regular"
+            android:gravity="center"
+            android:text="$"
+            android:textColor="@color/text_color"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/red_rose_bold"
+            android:gravity="center"
+            android:text="@string/manage_your"
+            android:textColor="@color/text_color"
+            android:textSize="40sp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/red_rose_bold"
+            android:gravity="center"
+            android:text="@string/subscriptions"
+            android:textColor="@color/purple_200"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/red_rose_regular"
+            android:gravity="center"
+            android:text="@string/app_description"
+            android:textColor="@color/text_second_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/labelStyle"
@@ -104,28 +104,33 @@
             android:autofillHints=""
             android:inputType="text"
             style="@style/editTextStyle" />
-    </LinearLayout>
 
-    <!-- add subscription button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/get_started_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:fontFamily="@font/red_rose_bold"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="@string/get_started"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-        app:backgroundTint="@color/variant_color"
-        app:cornerRadius="12dp"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- add subscription button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/get_started_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/red_rose_bold"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:text="@string/get_started"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:backgroundTint="@color/variant_color"
+            app:cornerRadius="12dp"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

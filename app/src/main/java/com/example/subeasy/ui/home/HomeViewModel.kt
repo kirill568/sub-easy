@@ -13,6 +13,7 @@ import com.example.subeasy.data.local.entities.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.math.RoundingMode
 import java.util.Calendar
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -72,7 +73,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
                 monthsSinceStart >= 0 && monthsSinceStart % subscription.cycle.months == 0
             }
-            .sumOf { it.cost }
+            .sumOf { it.cost.toBigDecimal() }
+            .setScale(2, RoundingMode.HALF_EVEN)
+            .toDouble()
     }
 
 }

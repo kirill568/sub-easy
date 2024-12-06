@@ -3,6 +3,8 @@ package com.example.subeasy.ui.addSubscription
 import android.app.DatePickerDialog
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.Observer
+import java.text.DecimalFormat
 
 class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private var _binding: FragmentAddSubscriptionBinding? = null
@@ -91,6 +94,40 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
             datePickerDialog.show()
         }
 
+        binding.cost.addTextChangedListener(object : TextWatcher {
+            private var isEditing = false
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isEditing) return
+
+                isEditing = true
+                s?.let {
+                    val input = it.toString()
+                    // Убираем все лишние символы, оставляя только цифры и точку
+                    val cleanString = input.replace("[^\\d.]".toRegex(), "")
+
+                    // Форматируем строку в формат ###.##
+                    val parts = cleanString.split(".")
+                    val formatted = when {
+                        parts.size == 1 -> parts[0] // Только целая часть
+                        parts.size > 1 -> {
+                            val whole = parts[0]
+                            val decimal = parts[1].take(2) // Ограничиваем до 2 знаков после точки
+                            "$whole.$decimal"
+                        }
+                        else -> cleanString
+                    }
+
+                    binding.cost.setText(formatted)
+                    binding.cost.setSelection(formatted.length) // Устанавливаем курсор в конец
+                }
+                isEditing = false
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
         setupCycleSpinner()
         setupRemindSpinner()
 
@@ -142,7 +179,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private fun createSubscription(): Subscription {
         val cycle = binding.cycle.selectedItem as Cycle
         val remind = binding.remind.selectedItem as Remind
-        val costValue = binding.cost.text.toString().toDoubleOrNull() ?: 0.0
+        val costValue = DecimalFormat("#.##").format(binding.cost.text.toString().toDoubleOrNull() ?: 0.0).toDouble()
         val noteText = binding.note.text.toString()
 
         return Subscription(
