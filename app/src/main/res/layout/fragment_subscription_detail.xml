@@ -1,210 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- If is not custom subscription -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/progressBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <!-- subscription icon -->
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/subscriptionIcon"
-                style="@style/subscriptionIcon"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:src="@drawable/ic_launcher"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/roundedImageView" />
-
-            <!-- subscription name -->
-            <TextView
-                android:id="@+id/name"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="visible">
+            <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/red_rose_bold"
-                android:textColor="@color/text_color"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subscriptionIcon"
-                tools:text="Netflix" />
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/variant_color"/>
+        </LinearLayout>
 
-            <!-- Total amount for subscription -->
-            <TextView
-                android:id="@+id/total_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:fontFamily="@font/red_rose_bold"
-                android:textColor="@color/text_color"
-                android:textSize="32sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="346.25$" />
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- If is not custom subscription -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- subscription icon -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/subscriptionIcon"
+                    style="@style/subscriptionIcon"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_launcher"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+                <!-- subscription name -->
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/red_rose_bold"
+                    android:textColor="@color/text_color"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subscriptionIcon"
+                    tools:text="Netflix" />
+
+                <!-- Total amount for subscription -->
+                <TextView
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/red_rose_bold"
+                    android:textColor="@color/text_color"
+                    android:textSize="32sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="346.25$" />
+
+                <TextView
+                    android:id="@+id/due"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/red_rose_regular"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/totalAmount"
+                    tools:text="Payment due in 4 days" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
-                android:id="@+id/due"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/red_rose_regular"
-                android:textColor="@color/text_second_color"
-                android:textSize="14sp"
+                style="@style/labelStyle"
+                android:text="@string/started_on" />
+
+            <!-- startedOn input -->
+            <EditText
+                android:id="@+id/startedOn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:autofillHints=""
+                android:inputType="date"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/choose"
+                style="@style/editTextStyle" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/labelStyle"
+                android:text="@string/cycle"/>
+
+            <!-- cycle -->
+            <EditText
+                android:id="@+id/cycle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints=""
+                android:inputType="text"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/cycle"
+                style="@style/editTextStyle" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/labelStyle"
+                android:text="@string/remind_me"/>
+
+            <!-- remind select -->
+            <EditText
+                android:id="@+id/remind"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="text"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/remind_me"
+                style="@style/editTextStyle" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/labelStyle"
+                android:text="@string/cost"/>
+
+            <!-- cost input -->
+            <!-- TODO: add formatting -->
+            <EditText
+                android:id="@+id/cost"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints=""
+                android:hint="10$"
+                android:clickable="false"
+                android:focusable="false"
+                android:inputType="numberDecimal"
+                style="@style/editTextStyle" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/labelStyle"
+                android:text="@string/note"/>
+
+            <!-- note input -->
+            <!-- TODO: add auto scrolling -->
+            <!-- TODO: add button for using micro -->
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:autofillHints=""
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:clickable="false"
+                android:focusable="false"
+                android:paddingVertical="4dp"
+                android:scrollbars="vertical"
+                style="@style/editTextStyle" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- add subscription button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/removeSubscriptionButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/red_rose_bold"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="@string/cancel_subscription"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                app:backgroundTint="@color/red"
+                app:cornerRadius="12dp"
+                app:iconPadding="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/total_amount"
-                tools:text="Payment due in 4 days" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/started_on" />
-
-        <!-- startedOn input -->
-        <!-- TODO: create DatePicker -->
-        <EditText
-            android:id="@+id/startedOn"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:autofillHints=""
-            android:inputType="date"
-            android:clickable="false"
-            android:focusable="false"
-            android:hint="@string/choose"
-            style="@style/editTextStyle" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/cycle"/>
-
-        <!-- cycle select -->
-        <!-- TODO: use spinner_item.xml -->
-        <Spinner
-            android:id="@+id/cycle"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/subscription_cycle"
-            style="@style/editTextStyle" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/remind_me"/>
-
-        <!-- remind select -->
-        <!-- TODO: use spinner_item.xml -->
-        <Spinner
-            android:id="@+id/remind"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/subscription_cycle"
-            style="@style/editTextStyle" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/cost"/>
-
-        <!-- cost input -->
-        <!-- TODO: add formatting -->
-        <EditText
-            android:id="@+id/cost"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:autofillHints=""
-            android:hint="10$"
-            android:inputType="numberDecimal"
-            style="@style/editTextStyle" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/note"/>
-
-        <!-- note input -->
-        <!-- TODO: add auto scrolling -->
-        <!-- TODO: add button for using micro -->
-        <EditText
-            android:id="@+id/note"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:autofillHints=""
-            android:gravity="start"
-            android:inputType="textMultiLine"
-            android:paddingVertical="4dp"
-            android:scrollbars="vertical"
-            style="@style/editTextStyle" />
-    </LinearLayout>
-
-    <!-- update subscription button -->
-    <!-- TODO: show this button if something was changed -->
-    <com.google.android.material.button.MaterialButton
-        android:visibility="gone"
-        android:id="@+id/update_subscription_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:fontFamily="@font/red_rose_bold"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="@string/update_subscription"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"
-        app:backgroundTint="@color/variant_color"
-        app:cornerRadius="12dp"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_subscription_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- add subscription button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_subscription_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:fontFamily="@font/red_rose_bold"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:padding="0dp"
-        android:text="@string/cancel_subscription"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-        app:backgroundTint="@color/red"
-        app:cornerRadius="12dp"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </FrameLayout>
+</androidx.core.widget.NestedScrollView>

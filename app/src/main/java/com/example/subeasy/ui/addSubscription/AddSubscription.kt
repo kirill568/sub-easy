@@ -55,6 +55,14 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         super.onViewCreated(view, savedInstanceState)
 
         if (args.serviceId == -1) {
+            binding.customServiceNameLabel.append(" *")
+        }
+        binding.startedOnLabel.append(" *")
+        binding.cycleLabel.append(" *")
+        binding.remindLabel.append(" *")
+        binding.costLabel.append(" *")
+
+        if (args.serviceId == -1) {
             binding.customSubscriptionBlock.visibility = View.VISIBLE
             binding.existSubscriptionBlock.visibility = View.GONE
         } else {

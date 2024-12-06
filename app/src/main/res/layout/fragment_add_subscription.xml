@@ -27,6 +27,7 @@
                 android:text="@string/custom_subscription" />
 
             <TextView
+                android:id="@+id/customServiceNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/labelStyle"
@@ -74,6 +75,7 @@
 
 
         <TextView
+            android:id="@+id/startedOnLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/labelStyle"
@@ -94,6 +96,7 @@
 
 
         <TextView
+            android:id="@+id/cycleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/labelStyle"
@@ -109,6 +112,7 @@
 
 
         <TextView
+            android:id="@+id/remindLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/labelStyle"
@@ -124,13 +128,13 @@
 
 
         <TextView
+            android:id="@+id/costLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/labelStyle"
             android:text="@string/cost"/>
 
         <!-- cost input -->
-        <!-- TODO: add formatting -->
         <EditText
             android:id="@+id/cost"
             android:layout_width="match_parent"

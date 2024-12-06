@@ -47,7 +47,11 @@
     <fragment
         android:id="@+id/navigation_subscription_detail"
         android:name="com.example.subeasy.ui.subscriptionDetail.SubscriptionDetail"
-        android:label="" />
+        android:label="" >
+        <argument
+            android:name="subscriptionId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_welcome"
         android:name="com.example.subeasy.ui.welcome.WelcomeFragment"

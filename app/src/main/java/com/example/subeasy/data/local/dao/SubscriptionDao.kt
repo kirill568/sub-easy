@@ -10,6 +10,7 @@ import com.example.subeasy.data.local.entities.SubscriptionWithService
 
 @Dao
 interface SubscriptionDao {
+    @Transaction
     @Query("SELECT * FROM subscription WHERE serviceId = :serviceId")
     suspend fun getSubscriptionsByService(serviceId: Int): List<Subscription>
 
@@ -19,6 +20,10 @@ interface SubscriptionDao {
     @Query("SELECT * FROM subscription")
     @Transaction
     suspend fun getAllSubscriptionsWithServices(): List<SubscriptionWithService>
+
+    @Transaction
+    @Query("SELECT * FROM subscription WHERE id = :subscriptionId")
+    suspend fun getSubscriptionWithService(subscriptionId: Int): SubscriptionWithService
 
     @Update
     suspend fun updateSubscription(subscription: Subscription)

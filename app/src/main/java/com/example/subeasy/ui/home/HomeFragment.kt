@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.subeasy.R
+import com.example.subeasy.data.local.entities.Subscription
 import com.example.subeasy.databinding.FragmentHomeBinding
+import com.example.subeasy.ui.allServices.AllServicesDirections
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -40,7 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subscriptionAdapter = SubscriptionAdapter()
+        subscriptionAdapter = SubscriptionAdapter(this)
         binding.mySubscriptions.adapter = subscriptionAdapter
         binding.mySubscriptions.layoutManager = LinearLayoutManager(requireContext())
 
@@ -70,6 +72,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         homeViewModel.totalCostForCurrentMonth.observe(viewLifecycleOwner) { totalCost ->
             binding.totalAmount.text = totalCost.toString()
         }
+    }
+
+    override fun onItemClick(subscription: Subscription) {
+        val controller = findNavController()
+        val action = HomeFragmentDirections.actionNavigationHomeToSubscriptionDetail(subscription.id)
+        controller.navigate(action)
     }
 
     override fun onDestroyView() {

@@ -24,7 +24,9 @@ class SubscriptionDiffCallback : DiffUtil.ItemCallback<SubscriptionWithService>(
     }
 }
 
-class SubscriptionAdapter : ListAdapter<SubscriptionWithService, SubscriptionAdapter.SubscriptionViewHolder>(SubscriptionDiffCallback()) {
+class SubscriptionAdapter(
+    private val itemClickListener: OnItemClickListener
+) : ListAdapter<SubscriptionWithService, SubscriptionAdapter.SubscriptionViewHolder>(SubscriptionDiffCallback()) {
 
     inner class SubscriptionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.name)
@@ -46,6 +48,10 @@ class SubscriptionAdapter : ListAdapter<SubscriptionWithService, SubscriptionAda
                 iconImageView.setImageDrawable(drawable)
             } catch (e: IOException) {
                 e.printStackTrace()
+            }
+
+            itemView.setOnClickListener {
+                itemClickListener.onItemClick(subscriptionWithService.subscription)
             }
         }
     }

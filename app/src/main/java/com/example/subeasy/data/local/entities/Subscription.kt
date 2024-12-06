@@ -75,4 +75,11 @@ data class Subscription(
         calendar.add(Calendar.MONTH, cycle.months)
         return calendar.timeInMillis
     }
+
+    fun calculateTotalAmount(): Double {
+        val currentDate = Calendar.getInstance().timeInMillis
+        val monthsPassed = ((currentDate - startedOn) / (30L * 24 * 60 * 60 * 1000)).toInt()
+        val cyclesPassed = monthsPassed / cycle.months
+        return cyclesPassed * cost
+    }
 }
