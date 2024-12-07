@@ -39,7 +39,7 @@ class SubscriptionAdapter(
             nameTextView.text = subscriptionWithService.service.name
             costTextView.text = "$" + subscriptionWithService.subscription.cost.toString()
             cycleTextView.text = "/" + subscriptionWithService.subscription.cycle.toString()
-            dueTextView.text = daysOrMonthsUntilNextPayment(subscriptionWithService.subscription.calculateNextPaymentDate())
+            dueTextView.text = subscriptionWithService.subscription.getDue()
 
             try {
                 val assetManager = itemView.context.assets
@@ -64,20 +64,5 @@ class SubscriptionAdapter(
     override fun onBindViewHolder(holder: SubscriptionViewHolder, position: Int) {
         val subscriptionWithService = getItem(position)
         holder.bind(subscriptionWithService)
-    }
-
-    private fun daysOrMonthsUntilNextPayment(nextPaymentDateMillis: Long): String {
-        val currentDate = Calendar.getInstance()
-        val nextPaymentDate = Calendar.getInstance().apply { timeInMillis = nextPaymentDateMillis }
-
-        val daysUntilNextPayment = ((nextPaymentDate.timeInMillis - currentDate.timeInMillis) / (1000 * 60 * 60 * 24)).toInt()
-        val monthsUntilNextPayment = (nextPaymentDate.get(Calendar.MONTH) - currentDate.get(Calendar.MONTH) +
-                (nextPaymentDate.get(Calendar.YEAR) - currentDate.get(Calendar.YEAR)) * 12)
-
-        return if (daysUntilNextPayment < 30) {
-            "Due in $daysUntilNextPayment days"
-        } else {
-            "Due in $monthsUntilNextPayment months"
-        }
     }
 }

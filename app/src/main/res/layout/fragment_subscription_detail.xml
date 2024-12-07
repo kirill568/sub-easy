@@ -147,7 +147,6 @@
                 android:text="@string/cost"/>
 
             <!-- cost input -->
-            <!-- TODO: add formatting -->
             <EditText
                 android:id="@+id/cost"
                 android:layout_width="match_parent"
