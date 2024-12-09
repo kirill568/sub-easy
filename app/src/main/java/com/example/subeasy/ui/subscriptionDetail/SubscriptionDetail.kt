@@ -53,8 +53,8 @@ class SubscriptionDetail: Fragment(R.layout.fragment_subscription_detail) {
 
         viewModel.subscriptionDetail.observe(viewLifecycleOwner) { detail ->
             binding.name.text = detail.service.name
-            binding.totalAmount.text = "$${detail.subscription.calculateTotalAmount()}"
-            binding.due.text = detail.subscription.getDue()
+            binding.totalAmount.text = "\u20bd${detail.subscription.calculateTotalAmount()}"
+            binding.due.text = detail.subscription.getDue(requireContext())
             val startedOnDate = Date(detail.subscription.startedOn)
             val dateFormat = SimpleDateFormat("dd.MM.yyyy")
             binding.startedOn.setText( dateFormat.format(startedOnDate))
@@ -74,16 +74,16 @@ class SubscriptionDetail: Fragment(R.layout.fragment_subscription_detail) {
 
         binding.removeSubscriptionButton.setOnClickListener {
             AlertDialog.Builder(requireContext())
-                .setMessage("Вы уверены, что хотите удалить подписку?")
-                .setPositiveButton("Да") { _, _ ->
+                .setMessage(requireContext().getString(R.string.subscription_delete_confirm))
+                .setPositiveButton(requireContext().getString(R.string.yes)) { _, _ ->
                     viewModel.deleteSubscription(viewModel.subscriptionDetail.value?.subscription ?: return@setPositiveButton, {
-                        Toast.makeText(requireContext(), "Подписка удалена", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), requireContext().getString(R.string.subscription_deleted), Toast.LENGTH_SHORT).show()
                         findNavController().popBackStack()
                     }, {
-                        Toast.makeText(requireContext(), "Ошибка удаления", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), requireContext().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
                     })
                 }
-                .setNegativeButton("Нет", null)
+                .setNegativeButton(requireContext().getString(R.string.no), null)
                 .show()
         }
     }

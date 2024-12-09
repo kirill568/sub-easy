@@ -68,7 +68,7 @@
                     android:textSize="32sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="346.25$" />
+                    tools:text="346.25\u20bd" />
 
                 <TextView
                     android:id="@+id/due"
@@ -134,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:autofillHints=""
-                android:hint="10$"
+                android:hint="10\u20bd"
                 android:clickable="false"
                 android:focusable="false"
                 android:inputType="numberDecimal"

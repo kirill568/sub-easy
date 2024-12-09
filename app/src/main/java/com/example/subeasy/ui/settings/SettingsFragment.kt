@@ -50,7 +50,7 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
                 if (selectedImageUri != null) {
                     saveImageToInternalStorage(selectedImageUri)
                 } else {
-                    Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), requireContext().getString(R.string.no_image_selected), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -85,7 +85,7 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
 
         binding.updateButton.setOnClickListener {
             viewModel.saveChanges {
-                Toast.makeText(requireContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), requireContext().getString(R.string.changes_saved), Toast.LENGTH_SHORT).show()
                 binding.updateButton.isEnabled = false
                 binding.updateButton.alpha = 0.5f
 
@@ -114,9 +114,9 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
             }
 
             binding.avatar.setImageURI(Uri.fromFile(file))
-            Toast.makeText(requireContext(), "Аватар обновлен", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), requireContext().getString(R.string.avatar_updated), Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), requireContext().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
             e.printStackTrace()
         }
     }

@@ -14,7 +14,6 @@ class AllServicesViewModel(application: Application) : AndroidViewModel(applicat
     private val _filteredServices = MutableLiveData<List<Service>>()
     val filteredServices: LiveData<List<Service>> get() = _filteredServices
 
-    // Фильтрация списка сервисов
     fun filterServices(query: String) {
         _filteredServices.value = allServices.value?.filter {
             it.name.contains(query, ignoreCase = true)

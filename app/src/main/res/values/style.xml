@@ -41,4 +41,11 @@
         <item name="android:textColor">@color/text_color</item>
         <item name="android:fontFamily">@font/red_rose_regular</item>
     </style>
+
+    <style name="bottom_nav_overlay">
+        <!-- selected item -->
+        <item name="colorPrimary">@color/variant_color</item>
+        <!-- other -->
+        <item name="colorOnSurface">#babac4</item>
+    </style>
 </resources>

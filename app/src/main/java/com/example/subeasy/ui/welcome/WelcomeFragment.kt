@@ -34,13 +34,13 @@ class WelcomeFragment: Fragment(R.layout.fragment_welcome) {
             if (isCreated) {
                 controller.navigate(R.id.action_navigation_welcome_to_navigation_home2)
             } else {
-                Toast.makeText(context, "Ошибка создания пользователя", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, requireContext().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
             }
         })
 
         binding.getStartedButton.setOnClickListener{
             if (binding.firstName.text.isNullOrBlank() || binding.lastName.text.isNullOrBlank()) {
-                Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, requireContext().getString(R.string.fill_required_fields), Toast.LENGTH_SHORT).show()
             } else {
                 userViewModel.addUser(binding.firstName.text.toString(), binding.lastName.text.toString())
             }

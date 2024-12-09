@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SubEasy</string>
+    <string name="title_home">Главная</string>
+    <string name="settings">Настройки</string>
+    <string name="empty_subscriptions">Добавьте свою первую подписку, чтобы увидеть её здесь</string>
+    <string name="amount_spent">Потрачено в этом месяце</string>
+    <string name="upcoming_payments">Предстоящие платежи</string>
+    <string name="my_subscriptions">Мои подписки</string>
+    <string name="all_subscriptions">Все подписки</string>
+    <string name="custom_subscription">Свой сервис</string>
+    <string name="search">Поиск</string>
+    <string name="started_on">Начало</string>
+    <string name="cost">Стоимость</string>
+    <string name="note">Заметка</string>
+    <string name="add_subscription">Добавить подписку</string>
+    <string name="choose">Выбрать</string>
+    <string name="cycle">Цикл</string>
+    <string name="remind_me">Напомнить</string>
+    <string name="name">Название</string>
+    <string name="enter_name">Введите название</string>
+    <string name="cancel_subscription">Отменить подписку</string>
+    <string name="update_subscription">Обновить подписку</string>
+    <string name="email">Электронная почта</string>
+    <string name="phone">Телефон</string>
+    <string name="update">Обновить</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="manage_your">Управляйте вашими</string>
+    <string name="subscriptions">Подписками</string>
+    <string name="app_description">Удобное управление подписками для вашего комфорта</string>
+    <string name="get_started">Начать</string>
+    <string name="monthly">Ежемесячно</string>
+    <string name="Yearly">Ежегодно</string>
+
+    <string name="fill_required_fields">Заполните обязательные поля</string>
+    <string name="create_subscription_error">Ошибка создания подписки</string>
+    <string name="allow_micro">Пожалуйста, разрешите использование микрофона в настройках</string>
+    <string name="start_record">Запись началась</string>
+    <string name="stop_record">Остановить запись</string>
+    <string name="enter_note_by_voice">Голосовой ввод</string>
+    <string name="greeting">Привет, %1$s!</string>
+    <string name="no_image_selected">Изображение не выбрано</string>
+    <string name="changes_saved">Изменения сохранены</string>
+    <string name="avatar_updated">Аватар обновлен</string>
+    <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="subscription_delete_confirm">Вы уверены, что хотите удалить подписку?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="subscription_deleted">Подписка удалена</string>
+    <string name="tomorrow">Завтра</string>
+
+    <plurals name="due_in_days">
+        <item quantity="one">Списание через %1$d день</item>
+        <item quantity="few">Списание через %1$d дня</item>
+        <item quantity="many">Списание через %1$d дней</item>
+        <item quantity="other">Списание через %1$d дней</item>
+    </plurals>
+
+    <plurals name="due_in_months">
+        <item quantity="one">Списание через %1$d месяц</item>
+        <item quantity="few">Списание через %1$d месяца</item>
+        <item quantity="many">Списание через %1$d месяцев</item>
+        <item quantity="other">Списание через %1$d месяцев</item>
+    </plurals>
+
+    <string-array name="subscription_cycle">
+        <item>Выбрать</item>
+        <item>Ежемесячно</item>
+        <item>Ежегодно</item>
+    </string-array>
+
+    <string-array name="subscription_remind">
+        <item>Никогда</item>
+        <item>Один день</item>
+        <item>Одна неделя</item>
+        <item>Один месяц</item>
+    </string-array>
+</resources>

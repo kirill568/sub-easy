@@ -51,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         homeViewModel.fetchData()
 
         homeViewModel.user.observe(viewLifecycleOwner) { user ->
-            binding.userName.text = user?.let { "${it.firstName} ${it.lastName}" } ?: "Гость"
+            binding.userName.text = user?.let { requireContext().getString(R.string.greeting, it.firstName) } ?: ""
         }
 
         homeViewModel.subscriptionsWithServices.observe(viewLifecycleOwner) { subscriptionsWithServices ->
@@ -75,7 +75,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             binding.totalAmount.text = totalCost.toString()
         }
 
-        // отображение аватарки при открытии фрагмента
         val file = File(requireContext().filesDir, "user_avatar")
         if (file.exists()) {
             binding.userAvatar.setImageURI(Uri.fromFile(file))

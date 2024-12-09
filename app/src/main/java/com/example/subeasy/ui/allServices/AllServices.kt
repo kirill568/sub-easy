@@ -48,7 +48,7 @@ class AllServices: Fragment(R.layout.fragment_all_services), OnItemClickListener
         }
 
         viewModel.allServices.observe(viewLifecycleOwner) { services ->
-            viewModel.filterServices("") // Обновляем фильтр
+            viewModel.filterServices("")
         }
 
         binding.searchInput.addTextChangedListener(object : TextWatcher {

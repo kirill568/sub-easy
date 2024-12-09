@@ -37,9 +37,9 @@ class SubscriptionAdapter(
 
         fun bind(subscriptionWithService: SubscriptionWithService) {
             nameTextView.text = subscriptionWithService.service.name
-            costTextView.text = "$" + subscriptionWithService.subscription.cost.toString()
+            costTextView.text = "\u20bd" + subscriptionWithService.subscription.cost.toString()
             cycleTextView.text = "/" + subscriptionWithService.subscription.cycle.toString()
-            dueTextView.text = subscriptionWithService.subscription.getDue()
+            dueTextView.text = subscriptionWithService.subscription.getDue(itemView.context)
 
             try {
                 val assetManager = itemView.context.assets

@@ -1,10 +1,12 @@
 package com.example.subeasy.data.local.entities
 
+import android.content.Context
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.TypeConverters
+import com.example.subeasy.R
 import com.example.subeasy.data.local.converter.CycleConverter
 import com.example.subeasy.data.local.converter.RemindConverter
 import java.math.BigDecimal
@@ -16,12 +18,12 @@ import java.time.temporal.ChronoUnit
 enum class Cycle(val months: Int) {
     MONTHLY(1) {
         override fun toString(): String {
-            return "Monthly"
+            return "Ежемесячно"
         }
     },
     YEARLY(12) {
         override fun toString(): String {
-            return "Yearly"
+            return "Ежегодно"
         }
     }
 }
@@ -71,7 +73,7 @@ data class Subscription(
     val description: String?,
     val isActive: Boolean
 ) {
-    fun getDue(): String {
+    fun getDue(context: Context): String {
         val nextPaymentDateMillis = this.calculateNextPaymentDate()
         val currentDate = Calendar.getInstance()
         val nextPaymentDate = Calendar.getInstance().apply { timeInMillis = nextPaymentDateMillis }
@@ -81,11 +83,11 @@ data class Subscription(
                 (nextPaymentDate.get(Calendar.YEAR) - currentDate.get(Calendar.YEAR)) * 12)
 
         return if (daysUntilNextPayment == 0) {
-            "Tomorrow"
+            context.getString(R.string.tomorrow)
         } else if (daysUntilNextPayment < 30) {
-            "Due in $daysUntilNextPayment days"
+            context.resources.getQuantityString(R.plurals.due_in_days, daysUntilNextPayment, daysUntilNextPayment)
         } else {
-            "Due in $monthsUntilNextPayment months"
+            context.resources.getQuantityString(R.plurals.due_in_months, monthsUntilNextPayment, monthsUntilNextPayment)
         }
     }
 

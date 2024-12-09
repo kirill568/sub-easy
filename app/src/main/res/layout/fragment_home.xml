@@ -110,7 +110,7 @@
                 android:fontFamily="@font/red_rose_bold"
                 android:textSize="32sp"
                 android:textColor="@color/text_color"
-                android:text="$"/>
+                android:text="\u20bd"/>
 
             <TextView
                 android:id="@+id/totalAmount"

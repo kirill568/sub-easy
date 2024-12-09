@@ -166,7 +166,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
                     (args.serviceId == -1 && binding.customServiceName.text.isNullOrEmpty())
                 )
             {
-                Toast.makeText(context, "Заполните обязательные поля", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, requireContext().getString(R.string.fill_required_fields), Toast.LENGTH_SHORT).show()
             } else {
                 val subscription = createSubscription()
                 if (args.serviceId == -1) {
@@ -179,7 +179,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
                     if (isCreated) {
                         findNavController().navigate(R.id.action_navigation_add_subscription_to_navigation_home)
                     } else {
-                        Toast.makeText(context, "Ошибка создания подписки", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, requireContext().getString(R.string.create_subscription_error), Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -205,7 +205,15 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private fun createSubscription(): Subscription {
         val cycle = binding.cycle.selectedItem as Cycle
         val remind = Remind.NEVER
-        val costValue = DecimalFormat("#.##").format(binding.cost.text.toString().toDoubleOrNull() ?: 0.0).toDouble()
+        println(binding.cost.text.toString())
+        println(binding.cost.text.toString().replace(',', '.'))
+        println(binding.cost.text.toString().replace(',', '.').toDoubleOrNull())
+        println(DecimalFormat("#.##").format(
+            (binding.cost.text.toString().replace(',', '.').toDoubleOrNull() ?: 0.0)
+        ).replace(',', '.'))
+        val costValue = DecimalFormat("#.##").format(
+            (binding.cost.text.toString().replace(',', '.').toDoubleOrNull() ?: 0.0)
+        ).replace(',', '.').toDouble()
         val noteText = binding.note.text.toString()
 
         return Subscription(
@@ -227,7 +235,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
             }
 
             shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO) -> {
-                Toast.makeText(requireContext(),"Пожалуйста, разрешите использовать микрофон в настройках", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),requireContext().getString(R.string.allow_micro), Toast.LENGTH_LONG).show()
             }
 
             else -> {
@@ -246,7 +254,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
 
     private fun startRecording() {
         try {
-            Toast.makeText(requireContext(),"Запись началась", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),requireContext().getString(R.string.start_record), Toast.LENGTH_LONG).show()
 
             mediaRecorder = MediaRecorder().apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -257,7 +265,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
                 start()
             }
             isRecording = true
-            binding.textToSpeechButton.text = "Stop listening"
+            binding.textToSpeechButton.text = requireContext().getString(R.string.stop_record)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -271,7 +279,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
             }
             mediaRecorder = null
             isRecording = false
-            binding.textToSpeechButton.text = "Enter a note by voice"
+            binding.textToSpeechButton.text = requireContext().getString(R.string.enter_note_by_voice)
         } catch (e: Exception) {
             e.printStackTrace()
         }

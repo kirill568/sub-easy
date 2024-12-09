@@ -38,18 +38,16 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/on_primary_color"
-        app:itemIconTint="#babac4"
-        >
+        android:backgroundTint="@color/on_primary_color">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
+            android:theme="@style/bottom_nav_overlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             app:menu="@menu/bottom_nav_menu"
             android:background="@android:color/transparent"
-            app:itemIconTint="#babac4"
             app:labelVisibilityMode="unlabeled"
             app:elevation="0dp" />
 
