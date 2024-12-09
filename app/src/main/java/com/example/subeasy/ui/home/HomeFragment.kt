@@ -1,5 +1,6 @@
 package com.example.subeasy.ui.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.subeasy.R
 import com.example.subeasy.data.local.entities.Subscription
 import com.example.subeasy.databinding.FragmentHomeBinding
 import com.example.subeasy.ui.allServices.AllServicesDirections
+import java.io.File
 
 class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
@@ -71,6 +73,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
         homeViewModel.totalCostForCurrentMonth.observe(viewLifecycleOwner) { totalCost ->
             binding.totalAmount.text = totalCost.toString()
+        }
+
+        // отображение аватарки при открытии фрагмента
+        val file = File(requireContext().filesDir, "user_avatar")
+        if (file.exists()) {
+            binding.userAvatar.setImageURI(Uri.fromFile(file))
         }
     }
 

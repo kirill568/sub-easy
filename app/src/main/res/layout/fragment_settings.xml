@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="56dp">
+    android:layout_marginBottom="66dp"
+    android:orientation="vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/avatar"
@@ -13,11 +14,10 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:cornerSize="50%"
-        android:src="@drawable/ic_launcher"
-        app:shapeAppearanceOverlay="@style/circleImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:contentPadding="1dp"
+        android:src="@drawable/ic_user"
+        android:layout_gravity="center"
+        app:shapeAppearanceOverlay="@style/circleImageView"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,10 +60,14 @@
             style="@style/editTextStyle" />
     </LinearLayout>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <!-- update info button -->
     <!-- TODO: show this button if something was changed -->
     <com.google.android.material.button.MaterialButton
-        android:visibility="gone"
         android:id="@+id/update_button"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -78,11 +82,10 @@
         android:textAllCaps="false"
         android:textColor="@color/text_color"
         android:textSize="16sp"
+        android:alpha="0.5"
+        android:enabled="false"
         app:backgroundTint="@color/variant_color"
         app:cornerRadius="12dp"
-        app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:iconPadding="0dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
