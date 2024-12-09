@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,6 +26,14 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.Observer
+import android.Manifest
+import android.content.pm.PackageManager
+import android.media.MediaRecorder
+import android.os.Handler
+import android.os.Looper
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import java.io.File
 import java.text.DecimalFormat
 
 class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
@@ -37,6 +46,15 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private val viewModel: AddSubscriptionViewModel by viewModels()
 
     private var selectedDateInMillis: Long = System.currentTimeMillis()
+
+    private lateinit var pLauncher: ActivityResultLauncher<String>
+
+    private var mediaRecorder: MediaRecorder? = null
+
+    private var isRecording = false
+
+    private val audioFilePath: String
+        get() = File(requireContext().filesDir, "text_to_speech.wav").absolutePath
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +71,9 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registerPermissionListener()
+        checkMicroPermission()
 
         if (args.serviceId == -1) {
             binding.customServiceNameLabel.append(" *")
@@ -163,6 +184,14 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
                 })
             }
         }
+
+        binding.textToSpeechButton.setOnClickListener {
+            if (isRecording) {
+                stopRecording()
+            } else {
+                startRecording()
+            }
+        }
     }
 
     private fun setupCycleSpinner() {
@@ -188,5 +217,75 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
             description = noteText,
             isActive = true
         )
+    }
+
+    private fun checkMicroPermission() {
+        when{
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO)
+                    == PackageManager.PERMISSION_GRANTED -> {
+                enableTextToSpeechButton()
+            }
+
+            shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO) -> {
+                Toast.makeText(requireContext(),"Пожалуйста, разрешите использовать микрофон в настройках", Toast.LENGTH_LONG).show()
+            }
+
+            else -> {
+                pLauncher.launch(Manifest.permission.RECORD_AUDIO)
+            }
+        }
+    }
+
+    private fun registerPermissionListener() {
+        pLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                enableTextToSpeechButton()
+            }
+        }
+    }
+
+    private fun startRecording() {
+        try {
+            Toast.makeText(requireContext(),"Запись началась", Toast.LENGTH_LONG).show()
+
+            mediaRecorder = MediaRecorder().apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                setOutputFile(audioFilePath)
+                prepare()
+                start()
+            }
+            isRecording = true
+            binding.textToSpeechButton.text = "Stop listening"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun stopRecording() {
+        try {
+            mediaRecorder?.apply {
+                stop()
+                release()
+            }
+            mediaRecorder = null
+            isRecording = false
+            binding.textToSpeechButton.text = "Enter a note by voice"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun enableTextToSpeechButton() {
+        binding.textToSpeechButton.isEnabled = true
+        binding.textToSpeechButton.alpha = 1.0f
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediaRecorder?.release()
+        mediaRecorder = null
+        _binding = null
     }
 }

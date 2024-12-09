@@ -150,6 +150,26 @@
             android:scrollbars="vertical"
             style="@style/editTextStyle" />
 
+        <!-- micro button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/textToSpeechButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:fontFamily="@font/red_rose_bold"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:enabled="false"
+            android:alpha="0.5"
+            android:text="Enter a note by voice"
+            app:backgroundTint="@color/teal_700"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"/>
+
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
