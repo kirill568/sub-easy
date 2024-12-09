@@ -112,22 +112,6 @@
 
 
         <TextView
-            android:id="@+id/remindLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/labelStyle"
-            android:text="@string/remind_me"/>
-
-        <!-- remind select -->
-        <Spinner
-            android:id="@+id/remind"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/subscription_cycle"
-            style="@style/editTextStyle" />
-
-
-        <TextView
             android:id="@+id/costLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -59,7 +59,6 @@ class SubscriptionDetail: Fragment(R.layout.fragment_subscription_detail) {
             val dateFormat = SimpleDateFormat("dd.MM.yyyy")
             binding.startedOn.setText( dateFormat.format(startedOnDate))
             binding.cycle.setText(detail.subscription.cycle.toString())
-            binding.remind.setText(detail.subscription.remind.toString())
             binding.cost.setText(detail.subscription.cost.toString())
             binding.note.setText(detail.subscription.description)
 

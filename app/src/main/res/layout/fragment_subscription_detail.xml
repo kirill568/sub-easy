@@ -126,24 +126,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/labelStyle"
-                android:text="@string/remind_me"/>
-
-            <!-- remind select -->
-            <EditText
-                android:id="@+id/remind"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="text"
-                android:clickable="false"
-                android:focusable="false"
-                android:hint="@string/remind_me"
-                style="@style/editTextStyle" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/labelStyle"
                 android:text="@string/cost"/>
 
             <!-- cost input -->

@@ -59,7 +59,6 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         }
         binding.startedOnLabel.append(" *")
         binding.cycleLabel.append(" *")
-        binding.remindLabel.append(" *")
         binding.costLabel.append(" *")
 
         if (args.serviceId == -1) {
@@ -137,14 +136,12 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         })
 
         setupCycleSpinner()
-        setupRemindSpinner()
 
         binding.addSubscriptionButton.setOnClickListener {
             if (
                     binding.cost.text.toString().toDoubleOrNull() == null ||
                     binding.startedOn.text.toString().isNullOrEmpty() ||
                     binding.cycle.selectedItem?.toString() == null ||
-                    binding.remind.selectedItem?.toString() == null ||
                     (args.serviceId == -1 && binding.customServiceName.text.isNullOrEmpty())
                 )
             {
@@ -176,17 +173,9 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         binding.cycle.adapter = cycleAdapter
     }
 
-    private fun setupRemindSpinner() {
-        val remindAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item,
-            Remind.entries.toTypedArray()
-        )
-        remindAdapter.setDropDownViewResource(R.layout.spinner_item)
-        binding.remind.adapter = remindAdapter
-    }
-
     private fun createSubscription(): Subscription {
         val cycle = binding.cycle.selectedItem as Cycle
-        val remind = binding.remind.selectedItem as Remind
+        val remind = Remind.NEVER
         val costValue = DecimalFormat("#.##").format(binding.cost.text.toString().toDoubleOrNull() ?: 0.0).toDouble()
         val noteText = binding.note.text.toString()
 
