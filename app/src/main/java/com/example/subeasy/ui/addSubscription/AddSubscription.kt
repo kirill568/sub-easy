@@ -1,40 +1,50 @@
 package com.example.subeasy.ui.addSubscription
 
+import android.Manifest
 import android.app.DatePickerDialog
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.subeasy.R
 import com.example.subeasy.data.local.entities.Cycle
 import com.example.subeasy.data.local.entities.Remind
-import com.example.subeasy.data.local.entities.Service
 import com.example.subeasy.data.local.entities.Subscription
 import com.example.subeasy.databinding.FragmentAddSubscriptionBinding
+import org.vosk.Model
+import org.vosk.Recognizer
+import org.vosk.android.RecognitionListener
+import org.vosk.android.SpeechService
+import org.vosk.android.StorageService
+import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
+import java.io.InputStream
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import androidx.lifecycle.Observer
-import android.Manifest
-import android.content.pm.PackageManager
-import android.media.MediaRecorder
-import android.os.Handler
-import android.os.Looper
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import java.io.File
-import java.text.DecimalFormat
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+
+@Serializable
+data class RecognitionResult(val text: String)
 
 class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private var _binding: FragmentAddSubscriptionBinding? = null
@@ -52,6 +62,12 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     private var mediaRecorder: MediaRecorder? = null
 
     private var isRecording = false
+
+    private var model: Model? = null;
+
+    private lateinit var speechService: SpeechService;
+
+    private lateinit var recognizer: Recognizer;
 
     private val audioFilePath: String
         get() = File(requireContext().filesDir, "text_to_speech.wav").absolutePath
@@ -72,6 +88,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initModel()
         registerPermissionListener()
         checkMicroPermission()
 
@@ -253,36 +270,57 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
     }
 
     private fun startRecording() {
-        try {
-            Toast.makeText(requireContext(),requireContext().getString(R.string.start_record), Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(),requireContext().getString(R.string.start_record), Toast.LENGTH_LONG).show()
+        this.recognizer = Recognizer(model, 16000.0f)
+        speechService = SpeechService(recognizer, 16000.0f)
 
-            mediaRecorder = MediaRecorder().apply {
-                setAudioSource(MediaRecorder.AudioSource.MIC)
-                setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-                setOutputFile(audioFilePath)
-                prepare()
-                start()
+        val listener = object : RecognitionListener {
+            override fun onPartialResult(partialResult: String) {
+                // Логируем промежуточный результат
+                Log.d("Vosk", "Partial result: $partialResult")
             }
+
+            override fun onResult(result: String) {
+                // Логируем окончательный результат
+                Log.d("Vosk", "Result text: $result")
+                val result = Json.decodeFromString<RecognitionResult>(result)
+                binding.note.setText(binding.note.text.toString() + " " + result.text)
+            }
+
+            override fun onError(exception: Exception) {
+                // Логируем ошибку
+                Log.e("Vosk", "Error recognition: ${exception.message}")
+            }
+
+            override fun onTimeout() {
+                // Логируем тайм-аут
+                Log.d("Vosk", "Время распознавания истекло")
+            }
+
+            override fun onFinalResult(hypothesis: String) {
+                // Логируем финальный результат
+                Log.d("Vosk", "Final result: $hypothesis")
+            }
+        }
+
+        // Запуск записи с микрофона
+        try {
+            speechService.startListening(listener)
             isRecording = true
             binding.textToSpeechButton.text = requireContext().getString(R.string.stop_record)
+            Log.d("Vosk", "Start recording")
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.e("Vosk", "Ошибка при запуске записи: ${e.message}")
         }
     }
 
     private fun stopRecording() {
-        try {
-            mediaRecorder?.apply {
-                stop()
-                release()
-            }
-            mediaRecorder = null
-            isRecording = false
-            binding.textToSpeechButton.text = requireContext().getString(R.string.enter_note_by_voice)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        speechService.stop()
+        recognizer.close()
+        Log.d("Vosk", "Recording stopped")
+        isRecording = false
+        binding.textToSpeechButton.text = requireContext().getString(R.string.enter_note_by_voice)
     }
 
     private fun enableTextToSpeechButton() {
@@ -290,10 +328,29 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         binding.textToSpeechButton.alpha = 1.0f
     }
 
+    private fun initModel() {
+        val assetModelPath = "models/vosk-model-small-ru-0.22"
+        val targetModelPath = "models"
+
+        StorageService.unpack(
+            requireContext(),
+            assetModelPath,
+            targetModelPath,
+            { model: Model ->
+                Log.d("Vosk", "Model successfully loaded")
+                this.model = model
+            },
+            { error: IOException ->
+                Log.e("Vosk", "Model loadgin error: ${error.message}")
+            }
+        )
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         mediaRecorder?.release()
         mediaRecorder = null
         _binding = null
+        stopRecording()
     }
 }

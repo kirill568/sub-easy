@@ -1,10 +1,11 @@
 package com.example.subeasy.ui
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,9 +15,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.subeasy.R
 import com.example.subeasy.data.local.AppDatabase
 import com.example.subeasy.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val supportActionBar = (this as? AppCompatActivity)?.supportActionBar
+
             when (destination.id) {
                 R.id.navigation_home -> showBottomAppBar()
                 R.id.navigation_settings -> showBottomAppBar()

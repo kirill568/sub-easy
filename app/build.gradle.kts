@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -53,6 +54,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.alphacephei:vosk-android:0.3.47@aar")
+    implementation("net.java.dev.jna:jna:5.13.0@aar")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     val room_version = "2.6.1"
 

@@ -36,6 +36,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:backgroundTint="@color/on_primary_color"
+        app:iconTint="@color/white"
         app:icon="@drawable/ic_add"
         app:iconSize="14dp"
         app:iconGravity="textStart"
