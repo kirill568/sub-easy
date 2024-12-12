@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/cycle"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="20sp"
         android:layout_weight="1"
         android:fontFamily="@font/red_rose_regular"
@@ -69,5 +69,5 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="/Month" />
+        tools:text="/Ежемесячно" />
 </androidx.constraintlayout.widget.ConstraintLayout>

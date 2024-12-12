@@ -276,34 +276,29 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
 
         val listener = object : RecognitionListener {
             override fun onPartialResult(partialResult: String) {
-                // Логируем промежуточный результат
                 Log.d("Vosk", "Partial result: $partialResult")
             }
 
             override fun onResult(result: String) {
-                // Логируем окончательный результат
                 Log.d("Vosk", "Result text: $result")
                 val result = Json.decodeFromString<RecognitionResult>(result)
-                binding.note.setText(binding.note.text.toString() + " " + result.text)
+                binding.note.append(" " + result.text)
+                binding.note.setSelection(binding.note.text.length)
             }
 
             override fun onError(exception: Exception) {
-                // Логируем ошибку
                 Log.e("Vosk", "Error recognition: ${exception.message}")
             }
 
             override fun onTimeout() {
-                // Логируем тайм-аут
-                Log.d("Vosk", "Время распознавания истекло")
+                Log.d("Vosk", "Timeout")
             }
 
             override fun onFinalResult(hypothesis: String) {
-                // Логируем финальный результат
                 Log.d("Vosk", "Final result: $hypothesis")
             }
         }
 
-        // Запуск записи с микрофона
         try {
             speechService.startListening(listener)
             isRecording = true
@@ -311,7 +306,7 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
             Log.d("Vosk", "Start recording")
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e("Vosk", "Ошибка при запуске записи: ${e.message}")
+            Log.e("Vosk", "Recording error: ${e.message}")
         }
     }
 
@@ -351,6 +346,5 @@ class AddSubscription: Fragment(R.layout.fragment_add_subscription) {
         mediaRecorder?.release()
         mediaRecorder = null
         _binding = null
-        stopRecording()
     }
 }

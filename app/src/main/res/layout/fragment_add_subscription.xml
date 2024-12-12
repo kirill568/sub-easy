@@ -137,15 +137,15 @@
 
         <!-- note input -->
         <!-- TODO: add auto scrolling -->
-        <!-- TODO: add button for using micro -->
         <EditText
             android:id="@+id/note"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:autofillHints=""
-            android:gravity="start"
+            android:gravity="top|start"
             android:hint="Enter note"
             android:inputType="textMultiLine"
+            android:maxLines="5"
             android:paddingVertical="4dp"
             android:scrollbars="vertical"
             style="@style/editTextStyle" />
