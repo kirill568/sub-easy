@@ -53,7 +53,8 @@ class SubscriptionDetail: Fragment(R.layout.fragment_subscription_detail) {
 
         viewModel.subscriptionDetail.observe(viewLifecycleOwner) { detail ->
             binding.name.text = detail.service.name
-            binding.totalAmount.text = "\u20bd${detail.subscription.calculateTotalAmount()}"
+            val totalAmount = detail.subscription.calculateTotalAmount()
+            binding.totalAmount.text = "\u20bd${String.format("%.0f", totalAmount).takeIf { totalAmount % 1 == 0.0 } ?: String.format("%s", totalAmount)}"
             binding.due.text = detail.subscription.getDue(requireContext())
             val startedOnDate = Date(detail.subscription.startedOn)
             val dateFormat = SimpleDateFormat("dd.MM.yyyy")

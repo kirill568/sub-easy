@@ -72,7 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         }
 
         homeViewModel.totalCostForCurrentMonth.observe(viewLifecycleOwner) { totalCost ->
-            binding.totalAmount.text = totalCost.toString()
+            binding.totalAmount.text = String.format("%.0f", totalCost).takeIf { totalCost % 1 == 0.0 } ?: String.format("%s", totalCost)
         }
 
         val file = File(requireContext().filesDir, "user_avatar")
